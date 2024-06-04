@@ -1,0 +1,23 @@
+.animate-text-appear,
+.animate-text-delay {
+  opacity: 0;
+}
+
+.animate-text-appear.show,
+.animate-text-delay.show {
+  opacity: 1;
+}
+.animate-text {
+    opacity: 1; 
+}
+
+@keyframes moveImages {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); } 
+  }
+  
+  .animate-moveImages {
+    animation: moveImages 10s linear infinite; 
+}
+
+

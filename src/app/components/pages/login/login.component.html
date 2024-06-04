@@ -1,0 +1,30 @@
+<div class="h-auto  w-full flex justify-center items-center bg-blue-100">
+<div class="w-96 mt-12 mb-12 rounded-lg p-8 shadow-md bg-gray-100">
+    <h1 class="flex justify-center font-bold text-xl">Login</h1>
+    <form [formGroup]="loginForm" class="mt-4 ">
+        <div class="mb-4 input-container">
+            
+            <mat-icon class="icon">email</mat-icon><input type="email" formControlName="email" placeholder="Enter email" name="email"
+                class="rounded-3xl shadow border w-full py-2 px-3 pl-10 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"  >
+            <div *ngIf="loginForm.get('email')?.hasError('required') && (loginForm.get('email')?.touched || submitted) "
+                class="text-red-500 text-xs"> Email is required </div>
+            <div *ngIf="loginForm.get('email')?.hasError('email') && (loginForm.get('email')?.touched || submitted) "
+                class="text-red-500 text-xs">Please enter a valid email address.</div>
+
+        </div>
+        <div class="mb-6 input-container">
+            
+            <mat-icon class="icon">lock</mat-icon> <input type="password" formControlName="password" placeholder="Enter password" name="password"
+                class="shadow border  rounded-3xl w-full py-2 px-3 pl-10 text-gray-700 focus:outline-none focus:shadow-outline">
+            <div *ngIf="loginForm.get('password')?.hasError('required') && (loginForm.get('password')?.touched || submitted)"
+                class="text-red-500 text-xs">Password is required</div>
+        </div>
+        <button type="button" (click)="onLogin()"
+            class="w-full mb-4 bg-green-500 text-white  py-2 rounded-3xl focus:outline-none focus:shadow-outline">Login</button>
+        <p class="mt-4 text-center text-gray-500">
+            Don't have an account? <span><button type="button" (click)="goToSignup()"
+                    class="text-[#2F8294] hover:font-bold">Signup</button></span>
+        </p>
+    </form>
+</div>
+</div>

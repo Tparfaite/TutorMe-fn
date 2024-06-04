@@ -1,0 +1,69 @@
+<div class=" pt-0">
+    <div class=" py-5 mx-5 flex justify-center" >
+        <div class="bg-gray-100  flex rounded-2xl mb-5 justify-center pt-5 h-auto w-1/2"  >
+            <div class="w-1/4">
+                <img class="rounded-lg h-36 w-36" src="../../../../assets/WhatsApp Image 2024-06-01 at 19.10.59.jpeg " alt="Tutor Image">
+                <h4 class="mt-2 font-bold">Parfaite</h4>
+                <p>Subject: <span class="font-bold"> English</span></p>
+                <p>Location: <span class="font-bold">Musanze</span></p>
+                
+            </div>
+            <div class=" xs:-pl-3 w-px bg-gray-200 mb-7 mt-4"></div>
+            <div class="ml-3 w-2/3">
+                
+                <h1 class="underline text-xl font-bold" >Description</h1>
+               
+                <p class=" pt-5 w-full">   bvbvbvbvbvbvbvb  bbvbvbv ccnccncn xmxmxmm zvzcczfz zdzdzdzf fsfsdsf fsfsdsds accdxdsdsx zczczxzdsd 
+                    sfsfsfsfcdzdzddzd nbcvcvcv vxcxcxczv czczczc tstfdfdfdfncvcvcvc vcvvcvcvcvc vcvvcvcvcvcncncncn
+                    cncncncncn cnbvbvbncbvbbvbvbn cbcbbvbvbvbbcbbc  bcbcvcvnn nnncn vvvvvbbb zxxxnxnxnx ssjsjskks nnnnnnn
+                    mmmmmmmnn bbbbbbbbbbb nnnnn mmmmmmmm mmmmmmmm mmmmmm hjjhhjjjjjj mmjjjjjjj oollkkkkkkkkkkkkkkkkk
+                    mmmmnnnn nnnnnnnnnnn nnnnnnnnnnnnnnnnnnnnnnn iiiiiiiiiii
+                    oooooooo kkkkk kkkkkk kkkkkkkkk kkkkkkk kkkkkkkk rrrrr dddddddd cccdddcfffxxccx zzsaaa
+                    dseeeeeeee sssss xxxx zzaaqqqqqwe vvgffggff gffffffffffff gggggggg ggggffffff cccdddcfffxxccx
+                    oiiuuuuuu vbbcbcbcb bbcbcbcbcb xbxvxvxvxvx  xvxvxvxvx</p>
+                <div class="mb-2">
+                    <button type="button" class=" hover:cursor-pointer bg-blue-200 p-2 px-5 rounded-lg " (click)="connectWithTutor()" >Connect</button>
+                </div><br>
+                
+              
+            </div>
+            
+        </div>
+
+        <div *ngIf="showMessageForm"  class="rounded-lg p-8 ml-5 shadow-md bg-gray-100"  >
+            <h1 class="flex justify-center font-bold text-xl mb-3">Send me a message</h1>
+            <form [formGroup]="messageForm">
+                <div class="mb-2">
+                    <label for="fullNames">Your names</label>
+                    <input type="text" name="fullNames" placeholder="" formControlName="fullNames" class="shadow border  rounded-3xl w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline">
+                    <div *ngIf="messageForm.get('fullNames')?.hasError('required') && (messageForm.get('fullNames')?.touched || submitted)"
+                    class="text-red-500 text-xs">Enter your full names</div>
+                </div>
+                <div class="mb-2">
+                    <label for="email">Your email</label>
+                    <input type="email" formControlName="email" name="email" placeholder=""  class="shadow border  rounded-3xl w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline">
+                    <div *ngIf="messageForm.get('email')?.hasError('required') && (messageForm.get('email')?.touched || submitted) "
+                class="text-red-500 text-xs"> Email is required </div>
+            <div *ngIf="messageForm.get('email')?.hasError('email') && (messageForm.get('email')?.touched || submitted) "
+                class="text-red-500 text-xs">Please enter a valid email address.</div>
+                </div>
+                <div class="mb-4">
+                    <label for="phoneNumber">Your phone number</label>
+                    <input type="number" name="phoneNumber" placeholder="" formControlName="phoneNumber" class="shadow border  rounded-3xl w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline">
+                    <div *ngIf="messageForm.get('phoneNumber')?.hasError('required') && (messageForm.get('phoneNumber')?.touched || submitted)"
+                    class="text-red-500 text-xs">phone number is required</div>
+                </div>
+                <div class="mb-4">
+                    <label for="message">Mesage</label>
+                    <textarea name="message" cols="35" rows="4" formControlName="message" id="" class="rounded-md outline-none pl-4" ></textarea>
+                    <div *ngIf="messageForm.get('message')?.hasError('required') && (messageForm.get('message')?.touched || submitted )"
+                    class="text-red-500 text-xs">Your message is required</div>
+                </div>
+                <button type="button" class="w-full bg-blue-200 flex justify-center items-center p-2 px-4 font-bold rounded-lg" (click)="onSendMessage()" >Send</button>
+               
+            </form>
+        </div>
+
+     
+    </div>
+</div>
