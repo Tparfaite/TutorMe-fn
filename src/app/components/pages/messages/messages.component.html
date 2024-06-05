@@ -1,0 +1,46 @@
+<div class="w-2/3 bg-gray-100 pt-4 pl-4 mx-auto"> 
+    <h1 class="flex justify-center font-bold">All messages</h1>
+        <div>
+            <table >
+                <thead class="text-xs  uppercase border-b border-t border-blue-400">
+                    <tr>
+                      <th scope="col" class="px-6 py-3">
+                        user name
+                      </th>
+                      <th scope="col" class="px-6 py-3">
+                        Email
+                      </th>
+                      <th scope="col" class="px-6 py-3">
+                        Message
+                      </th>
+                      <th scope="col" class="px-6 py-3">
+                        Delete
+                      </th>
+                      <th scope="col" class="px-6 py-3">
+                        Edit
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let message of messages"   class="border-b border-blue-400">
+                        <td class="px-6 py-4 font-medium  whitespace-nowrap ">
+                         {{message.names}}
+                        </td>
+                        <td class="px-6 py-4">
+                         {{message.email}}
+                        </td>
+                        <td class="px-6 py-4 ">
+                          {{message.message}}
+                        </td>
+                        <td class="px-6 py-4">
+                            <button type="button" class="font-medium text-white hover:underline"  (click)="deleteMessage(message.id)"><mat-icon class="text-red-600">delete</mat-icon></button>
+                        </td>
+                        <td class="px-6 py-4">
+                            <button type="button" class="font-medium text-white hover:underline"  (click)="deleteMessage(message.id)"><mat-icon class="text-red-600">edit</mat-icon></button>
+                        </td>
+                      </tr>
+                  </tbody>
+            </table>
+        </div>
+    
+</div>

@@ -9,6 +9,19 @@ import { IncludesModule } from '../includes/includes.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SingleTutorComponent } from './single-tutor/single-tutor.component';
 import { MatIconModule } from '@angular/material/icon';
+import { TutorLoggedInComponent } from './tutor-logged-in/tutor-logged-in.component';
+import { ExamPageComponent } from './exam-page/exam-page.component';
+import { UpdateProfileComponent } from './update-profile/update-profile.component';
+import { AuthService } from 'src/app/services/auth.service';
+import { ToastrModule } from 'ngx-toastr';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { TutorDashboardComponent } from './tutor-dashboard/tutor-dashboard.component';
+import { ForbiddenComponent } from './forbidden/forbidden.component';
+import { RouterModule } from '@angular/router';
+import { AllUsersComponent } from './all-users/all-users.component';
+import { MessagesComponent } from './messages/messages.component';
+import { OverviewComponent } from './overview/overview.component';
 
 
 
@@ -19,7 +32,16 @@ import { MatIconModule } from '@angular/material/icon';
     LoginComponent,
     SignupComponent,
     ContactComponent,
-    SingleTutorComponent
+    SingleTutorComponent,
+    TutorLoggedInComponent,
+    ExamPageComponent,
+    UpdateProfileComponent,
+    AdminDashboardComponent,
+    TutorDashboardComponent,
+    ForbiddenComponent,
+    AllUsersComponent,
+    MessagesComponent,
+    OverviewComponent
   
     
   ],
@@ -28,18 +50,31 @@ import { MatIconModule } from '@angular/material/icon';
     IncludesModule,
     ReactiveFormsModule,
     IncludesModule, 
-    MatIconModule, 
-    CommonModule,
+    MatIconModule,
+    ToastrModule.forRoot({
+      timeOut: 2000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true
+    }),
+    RouterModule,
+    NgxSpinnerModule,
+   
     
 
   ],
+  providers:[AuthService],
   exports:[
     HomeComponent,
     TutorsComponent,
     LoginComponent,
     SignupComponent,
     ContactComponent,
-    SingleTutorComponent
+    SingleTutorComponent,
+    TutorLoggedInComponent,
+    ExamPageComponent,
+    UpdateProfileComponent,
+    AdminDashboardComponent
+    
     
   ]
 })

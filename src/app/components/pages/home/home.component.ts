@@ -1,58 +1,77 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
+import { ToastrService } from 'ngx-toastr';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  animations: [
-    trigger('paragraphAnimation', [
-      transition('void => *', [ 
-        style({ transform: 'translateY(-100%)' }), 
-        animate('300ms ease-in-out', style({ transform: 'translateY(0)' })) 
-      ]),
-      transition('* => void', [
-        style({ transform: 'translateY(0)' }),
-        animate('200ms ease-in-out', style({ transform: 'translateY(-100%)' })) 
-      ])
-    ])
-  ]
+  
 })
 export class HomeComponent implements OnInit {
+  submitted:boolean=false
+  messageForm:FormGroup
   showParagraph = true;
+  isLoading:boolean=true
   currentText = 'TutorMe: Smarter learning, Better results !';
 
-  images: string[] = [
-    '../../../../assets/movingImage1.jpg',
-    '../../../../assets/movingImage2.jpg',
-    '../../../../assets/movingImage3.jpg'
-  ];
 
   currentImageIndex: number = 0;
   animationInterval: any;
 
-  constructor(){}
+  constructor(
+    private formBuilder:FormBuilder,
+    private authService:AuthService,
+    private toastr: ToastrService,
+    private spinner: NgxSpinnerService
+    ){
+    this.messageForm = this.formBuilder.group({
+      names:['',Validators.required],
+      email:['', [Validators.required, Validators.email]],
+      message:['',Validators.required]
+    })
+  }
   ngOnInit(): void {
-    this.animateLoop()
-    this.startImageAnimation()
-  }
-  animateLoop() {
-    setTimeout(() => {
-      this.showParagraph = false;
-      this.currentText = this.currentText === 'TutorMe: Smarter learning, Better results !' ? 'TutorMe: Unlock your potential with expert Tutors' : 'TutorMe: Smarter learning, Better results !';
-      setTimeout(() => {
-        this.showParagraph = true;
-        this.animateLoop();
-      }, 200); 
-    }, 3000);
-  }
 
-  startImageAnimation() {
-    this.animationInterval = setInterval(() => {
-      this.currentImageIndex = (this.currentImageIndex + 1) % this.images.length;
-    }, 4000);
   }
+  onMessageSubmit(){
+    this.submitted=true
+    this.isLoading = true;
+    if(this.messageForm.valid){
+      this.spinner.show()
+      const message= this.messageForm.value;
+      this.authService.sendMessage(message).subscribe({
+        next:(response=>{
+          setTimeout(() => {
+            this.toastr.success('Message sent');
+            this.isLoading=false;
+            this.spinner.hide();
+            this.messageForm.reset();
+            this.submitted=false
+          },2000)
+          console.log("this is response meaasge from client",response)
+        }), error:(error=>{
+          setTimeout(()=>{
+            this.isLoading=false;
+            this.toastr.error('Message not sent, An error occured!');
+            this.submitted=false
+            this.spinner.hide()
+            throw error.message
+          },2000)
+           
+        })
+      })
+      
+      
+    }else{
+      return
+    }
+  }
+ 
 
   
   

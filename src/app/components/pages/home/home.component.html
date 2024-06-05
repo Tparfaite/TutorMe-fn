@@ -1,64 +1,92 @@
-<div class="bg-blue-100" >
-    <div class="flex ">
-        <div class="flex  w-1/2 items-center justify-center">
-            <!-- <h3 class="text-3xl font-bold text-center text-green-500 mt-5">TutorMe!</h3> -->
-            <p class="text-4xl font-bold text-center text-green-500 h-1/2"> Unlock your potential with expert Tutors.Smarter learning, Better results ! </p>
-            <p class="text-2xl font-bold text-center text-green-500"> </p>
-        </div>
-        <div class="w-full h-auto mt-5 mb-10">
-            <img class="rounded w-full" src="../../../../assets/movingImage2.jpg" alt="">
-        </div>
-    </div>
-                    <!-- <div class="flex ml-5 w-1/2 items-center">
-                        <p [@paragraphAnimation]="showParagraph" class="text-3xl font-bold text-center text-green-500 animate-text">  {{ currentText }} </p>
-                    </div> -->
-                <!-- <div class="relative overflow-hidden w-full h-64 mt-5">
-                    <img *ngIf="currentImageIndex === 0" class="absolute inset-0 object-cover w-full h-full animate-moveImages"
-                        [src]="images[0]" alt="Image 1">
-                    <img *ngIf="currentImageIndex === 1" class="absolute inset-0 object-cover w-full h-full animate-moveImages"
-                            [src]="images[1]" alt="Image 2">
-                    <img *ngIf="currentImageIndex === 2" class="absolute inset-0 object-cover w-full h-full animate-moveImages"
-                        [src]="images[2]" alt="Image 3">
-                </div> -->
-    
-    
-      
-   
-    <div class="  rounded-xl shadow-md flex ">
-        <div class="bg-gray-100 flex ml-12 shadow-md m-2 rounded-2xl transition delay-150 duration-300 hover:delay-300">
-            
-            <div class="p-8">
-                <div class="uppercase  text-sm text-indigo-600 font-semibold"><mat-icon>edit</mat-icon> Our Objectives</div>
-                <ul>
-                    <li class="mt-2 text-gray-500">
-                        Building effective communication and collaboration between tutors and parents,
-                    enabling them to exchange information, share resources,for better education of the students. 
-                    </li>
-                    <li class="mt-2 text-gray-500">
-                        Accessing each and every tutor before uploading his/her profile to make sure
-                        that he/she is qualified.
-                    </li>
-                </ul>
-                
-            </div><br>
-        </div>
-        <div class="bg-gray-100 shadow flex m-2 rounded-2xl">
-            
-            <div class="p-4">
-                <div class="uppercase  text-sm text-indigo-600 font-semibold"> <mat-icon>edit</mat-icon>Our Vision</div>
-                <p class="mt-2 text-gray-500">To revolutionize home-based tutoring by providing a
-                    comprehensive digital platform that serves as a central hub for collaboration between tutors and
-                    parents. We envision a future where educators and families seamlessly connect, communicate, and
-                    collaborate to create personalized learning experiences that empower students to excel academically and
-                    thrive in their personal and professional lives.</p>
-            </div>
-        </div>
-        <div class="bg-gray-100 shadow flex border m-2 rounded-2xl mr-12">
-            <div class="p-8">
-                <div class="uppercase text-sm text-indigo-600 font-semibold"> <mat-icon>edit</mat-icon>Our Mission</div>
-                <p class="mt-2 text-gray-500">Revolutionalize home-based tutoring by providing a clear communication and collaboration between tutors and parents, ultimately empowering students to thrive academically</p>
-            </div>
-        </div>
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="default"
+  color="#fff"
+  type="ball-spin-clockwise"
+>
+  <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>
 
-    </div><br>
-</div>  
+<div class="bg-blue-100 px-4 py-8">
+  <div class="flex flex-col lg:flex-row">
+    <div class="flex flex-col lg:w-1/2 items-center justify-center mb-8 lg:mb-0">
+      <p class="text-2xl md:text-3xl lg:text-4xl font-bold text-center text-green-500 mb-4">
+        Unlock your potential with expert Tutors. Smarter learning, Better results!
+      </p>
+    </div>
+    <div class="w-full lg:w-1/2 h-auto mt-5 mb-10">
+      <img class="rounded w-full" src="../../../../assets/movingImage2.jpg" alt="Tutors Image">
+    </div>
+  </div>
+
+  <div class="rounded-xl shadow-md flex flex-col lg:flex-row gap-4">
+    <div class="bg-gray-100 flex flex-1 shadow-md m-2 rounded-2xl transition delay-150 duration-300 hover:delay-300 p-8">
+      <div>
+        <div class="uppercase text-sm text-indigo-600 font-semibold flex items-center mb-4">
+          <mat-icon>edit</mat-icon> Our Objectives
+        </div>
+        <ul>
+          <li class="mt-2 text-gray-500">
+            Building effective communication and collaboration between tutors and parents,
+            enabling them to exchange information, share resources, for better education of the students.
+          </li>
+          <li class="mt-2 text-gray-500">
+            Accessing each and every tutor before uploading his/her profile to make sure
+            that he/she is qualified.
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="bg-gray-100 flex flex-1 shadow-md m-2 rounded-2xl p-8">
+      <div>
+        <div class="uppercase text-sm text-indigo-600 font-semibold flex items-center mb-4">
+          <mat-icon>edit</mat-icon> Our Vision
+        </div>
+        <p class="mt-2 text-gray-500">
+          To revolutionize home-based tutoring by providing a
+          comprehensive digital platform that serves as a central hub for collaboration between tutors and
+          parents. We envision a future where educators and families seamlessly connect, communicate, and
+          collaborate to create personalized learning experiences that empower students to excel academically and
+          thrive in their personal and professional lives.
+        </p>
+      </div>
+    </div>
+    <div class="bg-gray-100 flex flex-1 shadow-md m-2 rounded-2xl p-8">
+      <div>
+        <div class="uppercase text-sm text-indigo-600 font-semibold flex items-center mb-4">
+          <mat-icon>edit</mat-icon> Our Mission
+        </div>
+        <p class="mt-2 text-gray-500">
+          Revolutionalize home-based tutoring by providing clear communication and collaboration between tutors and parents, ultimately empowering students to thrive academically.
+        </p>
+      </div>
+    </div>
+  </div><br>
+
+  <div class="bg-gray-100 p-8 rounded-lg mt-5 mb-5 shadow-md w-full lg:w-2/5 mx-auto">
+    <h1 class="text-xl mb-4 text-center">Leave a message for more clarification</h1>
+    <form [formGroup]="messageForm">
+      <div class="flex flex-col lg:flex-row justify-between gap-2 mb-2">
+        <div class="w-full lg:w-1/2">
+          <label for="names" class="block text-gray-700 text-sm">Your names</label>
+          <input type="text" formControlName="names" placeholder="ex:John Doe" name="names" class="shadow border rounded w-full p-2 text-gray-700 focus:outline-none focus:shadow-outline">
+          <div *ngIf="messageForm.get('names')?.hasError('required') && (messageForm.get('names')?.touched || submitted)" class="text-red-500 text-xs">Names are required</div>
+        </div>
+        <div class="w-full lg:w-1/2">
+          <label for="email" class="block text-gray-700 text-sm">Your email</label>
+          <input type="email" formControlName="email" placeholder="ex:john@gmail.com" name="email" class="shadow border rounded w-full p-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+          <div *ngIf="messageForm.get('email')?.hasError('required') && (messageForm.get('email')?.touched || submitted)" class="text-red-500 text-xs">Email is required</div>
+          <div *ngIf="messageForm.get('email')?.hasError('email') && (messageForm.get('email')?.touched || submitted)" class="text-red-500 text-xs">Please enter a valid email address.</div>
+        </div>
+      </div>
+      <div>
+        <label class="text-gray-700 text-sm" for="message">Message</label>
+        <textarea class="outline-none rounded-md p-2 w-full" name="message" cols="45" rows="3" formControlName="message" placeholder="Hey there ..."></textarea>
+        <div *ngIf="messageForm.get('message')?.hasError('required') && (messageForm.get('message')?.touched || submitted)" class="text-red-500 text-xs">Message is required</div>
+      </div>
+      <div class="flex justify-center mt-4">
+        <button type="button" (click)="onMessageSubmit()" class="w-full lg:w-1/3 mb-2 bg-green-500 text-white py-2 rounded-lg focus:outline-none focus:shadow-outline">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>

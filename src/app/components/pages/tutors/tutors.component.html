@@ -2,25 +2,24 @@
 <div class="pt-16 bg-blue-100">
     <h1 class="flex justify-center text-3xl">Available Tutors </h1>
     <h1 class="flex justify-center text-xl">Choose who fit for you</h1>
-    <div class="mt-16 gap-4 gap-x-4 mx-5 w-2/3 m-auto " >
+    <div class="mt-16 gap-4 gap-x-4  w-2/3 mx-auto " >
         <div *ngFor="let tutor of tutors" class="bg-gray-100 p-4 flex m-auto rounded-2xl mb-5 h-96 "  >
             <div class="w-1/4">
-                <img class="rounded-lg h-36 w-36" src="{{tutor.imageUrl}} " alt="Tutor Image">
-                <h4 class="mt-2 font-bold">{{tutor.tutorName}}</h4>
-                <p>Subject: <span class="font-bold"> {{tutor.subject}}</span></p>
-                <p>Location: <span class="font-bold">{{tutor.location}}</span></p>
+                <img class="rounded-lg h-36 w-36" src="../../../../assets/movingImage2.jpg " alt="Tutor Image">
+                <h4 class="mt-2 font-bold">{{tutor.firstName}} {{tutor.lastName}}</h4>
+                <p>Subject: <span class="font-bold"> {{tutor.role}}</span></p>
+                <p>Location: <span class="font-bold">{{tutor.province}}, {{tutor.district}}, {{tutor.sector}} </span></p>
                 
             </div>
             <div class=" xs:-pl-3 w-px bg-gray-200 mb-7 mt-4"></div>
             <div class="ml-8 w-2/3">
                 
                 <h1 class="underline text-xl font-bold" >Description</h1>
-                <p class=" pt-5 w-full">  {{tutor.description}}</p>
+                <p class=" pt-5 w-full">  {{tutor.phoneNumber}}, {{tutor.email}} </p>
 
                 <button type="button" class=" hover:cursor-pointer bg-blue-100 font-bold py-2 px-4 rounded-lg shadow focus:outline-none focus:ring-green-500 mb-5">Read more...</button>
               
             </div>
-            
         </div>
      
     </div>

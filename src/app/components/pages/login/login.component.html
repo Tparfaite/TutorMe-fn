@@ -1,3 +1,13 @@
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="default"
+  color="#fff"
+  type="ball-spin-clockwise"
+>
+  <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>
+  
+
 <div class="h-auto  w-full flex justify-center items-center bg-blue-100">
 <div class="w-96 mt-12 mb-12 rounded-lg p-8 shadow-md bg-gray-100">
     <h1 class="flex justify-center font-bold text-xl">Login</h1>
@@ -20,11 +30,13 @@
                 class="text-red-500 text-xs">Password is required</div>
         </div>
         <button type="button" (click)="onLogin()"
-            class="w-full mb-4 bg-green-500 text-white  py-2 rounded-3xl focus:outline-none focus:shadow-outline">Login</button>
+            class="w-full mb-4 bg-green-500 text-white cursor-pointer py-2 rounded-3xl focus:outline-none focus:shadow-outline">Login</button>
         <p class="mt-4 text-center text-gray-500">
             Don't have an account? <span><button type="button" (click)="goToSignup()"
                     class="text-[#2F8294] hover:font-bold">Signup</button></span>
         </p>
     </form>
+
+    
 </div>
 </div>
