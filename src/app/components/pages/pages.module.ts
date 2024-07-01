@@ -22,6 +22,7 @@ import { RouterModule } from '@angular/router';
 import { AllUsersComponent } from './all-users/all-users.component';
 import { MessagesComponent } from './messages/messages.component';
 import { OverviewComponent } from './overview/overview.component';
+import { ExamsComponent } from './exams/exams.component';
 
 
 
@@ -41,7 +42,8 @@ import { OverviewComponent } from './overview/overview.component';
     ForbiddenComponent,
     AllUsersComponent,
     MessagesComponent,
-    OverviewComponent
+    OverviewComponent,
+    ExamsComponent
   
     
   ],
@@ -73,7 +75,8 @@ import { OverviewComponent } from './overview/overview.component';
     TutorLoggedInComponent,
     ExamPageComponent,
     UpdateProfileComponent,
-    AdminDashboardComponent
+    AdminDashboardComponent,
+    TutorDashboardComponent
     
     
   ]

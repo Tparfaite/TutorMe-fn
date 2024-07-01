@@ -14,9 +14,17 @@
         
             <div> <a class="cursor-pointer focus:active focus:text-green-700" routerLink="/tutors" routerLinkActive="active-link" >Tutors</a> </div>
         
-            <div> <a class="cursor-pointer focus:active focus:text-green-700" routerLink="/login" routerLinkActive="active-link">Login</a> </div>
-        
-            <div> <a class="cursor-pointer focus:active focus:text-green-700" routerLink="/signup" routerLinkActive="active-link" >Signup</a> </div>
+            <ng-container *ngIf="!isLoggedIn()">
+                <div><a class="cursor-pointer focus:active focus:text-green-700" routerLink="/login" routerLinkActive="active-link">Login</a></div>
+                <div><a class="cursor-pointer focus:active focus:text-green-700" routerLink="/signup" routerLinkActive="active-link">Signup</a></div>
+            </ng-container>
+
+            <ng-container *ngIf="isLoggedIn()">
+                <div> <button class="cursor-pointer focus:active focus:text-green-700" (click)="logout()" >Logout</button> </div>
+            </ng-container>
+           
+
+           
         
     </div>
 </div>
