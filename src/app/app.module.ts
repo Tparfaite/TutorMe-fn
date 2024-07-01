@@ -6,6 +6,10 @@ import { AppComponent } from './app.component';
 import { IncludesModule } from './components/includes/includes.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PagesModule } from './components/pages/pages.module';
+import { AuthService } from './services/auth.service';
+import { HttpClientModule } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 
 
@@ -19,9 +23,12 @@ import { PagesModule } from './components/pages/pages.module';
     AppRoutingModule,
     IncludesModule,
     BrowserAnimationsModule,
-    PagesModule
+    PagesModule,
+    HttpClientModule,
+    
+    
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

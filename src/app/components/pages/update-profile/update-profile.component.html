@@ -1,0 +1,26 @@
+<div>
+    <h1>Congratulations you Successfully passed Exam! Now you are able to Update your profile</h1>
+    <div class="w-96 mt-12 mb-12 rounded-lg p-8 shadow-md bg-gray-100">
+        <form [formGroup]="updateProfile">
+           <div>
+            <label for="image">Upload your photo</label>
+           <input type="file" accept="image/*"  formControlName="image">
+           <div *ngIf="image">
+            <img src="{{image}}" style="height: 40px;" alt="">
+          </div>
+           </div>
+           
+                <div class="mb-4">
+                    <label for="description">Description</label>
+                    <textarea name="description" cols="35" rows="4" formControlName="description" id="" class="rounded-md outline-none pl-4" ></textarea>
+                    <div *ngIf="updateProfile.get('description')?.hasError('required') && (updateProfile.get('description')?.touched )"
+                    class="text-red-500 text-xs">Your message is required</div>
+                </div>
+                <div>
+                    <label for="interest">Additional interest if any</label>
+                    <textarea name="interest" cols="20" rows="3" formControlName="interest" id="" class="rounded-md outline-none pl-4" ></textarea>
+                </div>
+               <button class="bg-green-400 rounded-md p-2 px-4">Update</button>
+        </form>
+    </div>
+</div>

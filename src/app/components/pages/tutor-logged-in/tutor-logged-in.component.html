@@ -1,0 +1,58 @@
+<div>
+    <div class="">
+        <h1>WELCOME Tutor</h1>
+        <p>We are glad to have you as a new tutor on this platform!</p>
+    </div>
+    <div>
+        <div>
+            <p>Parents and students are able to see only the tutors who have updated their profile and to update your profile you have to pass an exam related to the subject you want to provide.</p>
+            <button class="bg-green-400 text-white p-2 px-4 rounded-md ">Do Exam</button>
+        </div>
+        <div class="w-96 mt-12 mb-12 rounded-lg p-8 shadow-md bg-gray-100">
+            <h2>Fill this form to take Exam</h2>
+            <form [formGroup]="subjectForm">
+                <div>
+                    <label for="level" class="block text-gray-700 text-md">Level</label>
+                    <select name="level" id="level" formControlName="level" class="shadow border rounded w-full p-2 text-gray-700 focus:outline-none focus:shadow-outline">
+                        <option value="" disabled selected>Please Select </option>
+                        <option value="primary">Primary/Nursery</option>
+                        <option value="secondary">Secondary</option>
+                    </select>
+                </div>
+                <div >
+                    <label for="subject" class="block text-gray-700 text-md">Subject</label>
+                    <select name="subject" id="subject" formControlName="subject" class="shadow border rounded w-full p-2 text-gray-700 focus:outline-none focus:shadow-outline">
+                        <option value="" disabled selected>Please Select </option>
+                        <option value="English">English</option>
+                        <option value="Kinyarwanda">Kinyarwanda</option>
+                        <option value="Mathematics">Mathematics</option>
+                        <option value="Social studies">Social studies</option>
+                        <option value="SET">SET</option>
+                        <option value="French">French</option>
+                    </select>
+                </div>
+                <div >
+                    <label for="subject" class="block text-gray-700 text-md">Subject</label>
+                    <select name="subject" id="subject" formControlName="subject" class="shadow border rounded w-full p-2 text-gray-700 focus:outline-none focus:shadow-outline">
+                        <option value="" disabled selected>Please Select </option>
+                        <option value="English">English</option>
+                        <option value="Kinyarwanda">Kinyarwanda</option>
+                        <option value="French">French</option>
+                        <option value="Mathematics">Mathematics</option>
+                        <option value="Biology">Biology</option>
+                        <option value="Chemistry">Chemistry</option>
+                        <option value="Physics">Physics</option>
+                        <option value="History">History</option>
+                        <option value="Geograph">Geograph</option>
+                        <option value="ICT">ICT</option>
+                        <option value="Biology">Biology</option>
+                        <option value="Chemistry">Chemistry</option>
+                        
+                    </select>
+                </div>
+                <button class="bg-blue-100 mt-2 rounded-md p-3 " (click)="goToExamPage()">Start Exam</button>
+            </form>
+        </div>
+    </div>
+    
+</div>
