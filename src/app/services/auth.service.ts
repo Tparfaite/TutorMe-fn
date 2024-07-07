@@ -1,8 +1,10 @@
+import { jwtDecode } from 'jwt-decode';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { CreateMessageDto, CreateUserDto, UserLogin } from '../models/user.model';
+import { CreateMessageDto, CreateUserDto, UpdateProfileDto, UserLogin } from '../models/user.model';
 import { Observable, tap } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
+
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +23,15 @@ export class AuthService {
   getToken(): string {
     return this.cookieService.get('accessToken');
   }
+  
+  decodedUser(){
+    const payloadDecoded:{email:string,id:number}= jwtDecode(this.getToken());
+    console.log('decoded in authservice',payloadDecoded)
+    return payloadDecoded
+    
+  }
+  
+
 
   createUser(user:CreateUserDto):Observable<any>{
     return this.http.post<CreateUserDto>(`${this.appUrl}/users/create`,user, {headers:this.header}).pipe(
@@ -52,6 +63,18 @@ export class AuthService {
     )
   }
 
+  getUserById(id:number):Observable<any>{
+    const token=this.getToken();
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.get(`${this.appUrl}/users/${id}`,{headers}).pipe(
+      tap(user=>{
+        console.log('all users', user)
+      })
+    )
+  }
+
   
   sendMessage(message:CreateMessageDto):Observable<any>{
     return this.http.post<CreateMessageDto>(`${this.appUrl}/message/create`,message, {headers:this.header}).pipe(
@@ -59,6 +82,14 @@ export class AuthService {
         console.log("posted message in db ",result)
       })
     )
+  }
+
+  createUserProfile(id:number,userProfile:UpdateProfileDto ):Observable<any>{
+   return this.http.post<UpdateProfileDto>(`${this.appUrl}/users/profile/${id}`,userProfile, {headers:this.header}).pipe(
+    tap(result=>{
+      console.log("userProfile",result)
+    })
+   )
   }
 
 
@@ -89,5 +120,6 @@ export class AuthService {
    
   }
 
+  
 
 }

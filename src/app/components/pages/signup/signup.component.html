@@ -8,30 +8,30 @@
 </ngx-spinner>
 
     <div class=" w-full flex justify-center bg-blue-100 ">
-        <div class="bg-gray-100 p-8 rounded-lg mt-5 mb-5 shadow-md w-2/5  ">
+        <div class="bg-gray-200 p-8 rounded-lg mt-5 mb-5 shadow-md w-2/5  ">
             <h2 class="text-2xl font-semibold mb-4 text-center">Sign Up</h2>
             <form [formGroup]="signupForm" class="mt-2">
                 <div class="flex justify-between gap-2">
                     <div class="mb-2">
                         <label for="firstName" class="block text-gray-700 text-md">First name</label>
-                        <input type="text" formControlName="firstName" placeholder="ex:John" name="firstName" class="shadow border rounded w-full p-2 text-gray-700 focus:outline-none focus:shadow-outline">
+                        <input type="text" formControlName="firstName" placeholder="ex:John" name="firstName" class=" rounded w-full p-2 text-gray-700 focus:outline-none">
                         <div *ngIf="signupForm.get('firstName')?.hasError('required') && (signupForm.get('firstName')?.touched || submitted)"  class="text-red-500 text-xs">First Name is required</div>
                     </div>
                     <div class="mb-2">
                         <label for="lastName" class="block text-gray-700 text-md">Last name</label>
-                        <input type="text" formControlName="lastName" placeholder="ex:Doe" name="lastName" class="shadow border rounded w-full p-2 text-gray-700 focus:outline-none focus:shadow-outline">
+                        <input type="text" formControlName="lastName" placeholder="ex:Doe" name="lastName" class="rounded w-full p-2 text-gray-700 focus:outline-none">
                         <div *ngIf="signupForm.get('lastName')?.hasError('required') && (signupForm.get('lastName')?.touched || submitted)"  class="text-red-500 text-xs">Last name is required</div>
                     </div>
                 </div>
                 <div class="flex mb-2 justify-between gap-2">
                     <div class="">
                         <label for="phoneNumber" class="block text-gray-700 text-md">Phone Number</label>
-                        <input type="number" formControlName="phoneNumber" placeholder="ex:078888888" name="phoneNumber" class="shadow border rounded w-full p-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        <input type="number" formControlName="phoneNumber" placeholder="ex:078888888" name="phoneNumber" class="rounded w-full p-2 text-gray-700 leading-tight focus:outline-none">
                         <div *ngIf="signupForm.get('phoneNumber')?.hasError('required') && (signupForm.get('phoneNumber')?.touched || submitted)"  class="text-red-500 text-xs">Phone number is required</div>
                     </div>
                     <div class="">
                         <label for="email" class="block text-gray-700 text-md ">Email</label>
-                        <input type="email" formControlName="email" placeholder="ex:john@gmail.com" name="email" class="shadow border rounded w-full p-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" >
+                        <input type="email" formControlName="email" placeholder="ex:john@gmail.com" name="email" class="rounded w-full p-2 text-gray-700 leading-tight focus:outline-none" >
                         <div *ngIf="signupForm.get('email')?.hasError('required') && (signupForm.get('email')?.touched || submitted) "  class="text-red-500 text-xs"> Email is required </div>
                         <div *ngIf="signupForm.get('email')?.hasError('email') && (signupForm.get('email')?.touched || submitted) " class="text-red-500 text-xs">Please enter a valid email address.</div>
                     
@@ -40,24 +40,24 @@
                 <div class="flex mb-2 justify-between gap-2">
                     <div class="">
                         <label for="province" class="block text-gray-700 text-md">Your province</label>
-                        <input type="text" formControlName="province" placeholder="ex:north" name="province" class="shadow border rounded w-full p-2 text-gray-700 focus:outline-none focus:shadow-outline">
+                        <input type="text" formControlName="province" placeholder="ex:north" name="province" class="rounded w-full p-2 text-gray-700 focus:outline-none">
                         <div *ngIf="signupForm.get('province')?.hasError('required') && (signupForm.get('province')?.touched || submitted)"  class="text-red-500 text-xs">Your province is required</div>
                     </div>
                     <div class="">
                         <label for="password" class="block text-gray-700 text-md">Password</label>
-                        <input type="password" formControlName="password" placeholder="ex:......" name="password" class="shadow border rounded w-full p-2 text-gray-700 focus:outline-none focus:shadow-outline">
+                        <input type="password" formControlName="password" placeholder="ex:......" name="password" class="rounded w-full p-2 text-gray-700 focus:outline-none">
                         <div *ngIf="signupForm.get('password')?.hasError('required') && (signupForm.get('password')?.touched || submitted)"  class="text-red-500 text-xs">Password is required</div>
                     </div>
                 </div>
                 <div class="flex mb-2 justify-between gap-2">
                     <div class="">
                         <label for="district" class="block text-gray-700 text-md">Your district</label>
-                        <input type="text" formControlName="district" placeholder="ex:Musanze" name="district" class="shadow border rounded w-full p-2 text-gray-700 focus:outline-none focus:shadow-outline">
+                        <input type="text" formControlName="district" placeholder="ex:Musanze" name="district" class="rounded w-full p-2 text-gray-700 focus:outline-none">
                         <div *ngIf="signupForm.get('district')?.hasError('required') && (signupForm.get('district')?.touched || submitted)"  class="text-red-500 text-xs">Your district is required</div>
                     </div>
                     <div class="">
                         <label for="sector" class="block text-gray-700 text-md">Your sector</label>
-                        <input type="text" formControlName="sector" placeholder="ex:Musanze" name="sector" class="shadow border rounded w-full p-2 text-gray-700 focus:outline-none focus:shadow-outline">
+                        <input type="text" formControlName="sector" placeholder="ex:Musanze" name="sector" class="rounded w-full p-2 text-gray-700 focus:outline-none">
                         <div *ngIf="signupForm.get('sector')?.hasError('required') && (signupForm.get('sector')?.touched || submitted)"  class="text-red-500 text-xs">Sector is required</div>
                     </div>
                 </div>
@@ -66,7 +66,7 @@
                 
                 <div class="mb-2">
                     <label for="role" class="block text-gray-700 text-md">User role</label>
-                    <select name="role" id="role" formControlName="role" class="shadow border rounded w-full p-2 text-gray-700 focus:outline-none focus:shadow-outline">
+                    <select name="role" id="role" formControlName="role" class="rounded w-full p-2 text-gray-700 focus:outline-none">
                         <option value="" disabled selected>Please Select </option>
                         <option value="parent">Parent/student</option>
                         <option value="tutor">Tutor</option>

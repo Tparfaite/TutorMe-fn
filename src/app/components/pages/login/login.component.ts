@@ -34,6 +34,20 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  getUserById(id: number): void {
+    this.authService.getUserById(id).subscribe({
+      next: (user) => {
+        console.log('User data:', user);
+        const userProfile = user.userProfile
+        console.log("userProfile",userProfile)
+        return user
+      },
+      error: (error) => {
+        console.error('Error fetching user:', error);
+      }
+    });
+  }
+
   onLogin() {
     this.submitted = true;
     this.isLoading = true;
@@ -54,12 +68,14 @@ export class LoginComponent implements OnInit {
           
           setTimeout(() => {
            
-            if (decodedToken.role === 'parent') {
-              this.router.navigate(['/tutors']);
-            }else if(decodedToken.role === 'admin'){
-              this.router.navigate(['/adminDashboard'])
+            if (decodedToken.role === 'admin') {
+              this.router.navigate(['/adminDashboard']);
+            }else if(decodedToken.role === 'parent'){
+              this.router.navigate(['/tutors'])
             }
-             else{
+             else {
+              const loggedUserId=decodedToken.id;
+             this.getUserById(loggedUserId);
               this.router.navigate(['/tutorDashboard']);
             }
             this.toastr.success('Logged in successfully');

@@ -1,0 +1,15 @@
+.input-container {
+    position: relative;
+  }
+  
+  .icon {
+    position: absolute;
+    left: 10px; /* Adjust left padding for icon positioning */
+    top: 50%; /* Center the icon vertically within the input */
+    transform: translateY(-50%); /* Adjust for icon height if needed */
+  }
+
+ 
+
+  
+  

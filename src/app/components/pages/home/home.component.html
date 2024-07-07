@@ -69,12 +69,12 @@
       <div class="flex flex-col lg:flex-row justify-between gap-2 mb-2">
         <div class="w-full lg:w-1/2">
           <label for="names" class="block text-gray-700 text-sm">Your names</label>
-          <input type="text" formControlName="names" placeholder="ex:John Doe" name="names" class="shadow border rounded w-full p-2 text-gray-700 focus:outline-none focus:shadow-outline">
+          <input type="text" formControlName="names" placeholder="ex:John Doe" name="names" class="rounded w-full p-2 text-gray-700 focus:outline-none">
           <div *ngIf="messageForm.get('names')?.hasError('required') && (messageForm.get('names')?.touched || submitted)" class="text-red-500 text-xs">Names are required</div>
         </div>
         <div class="w-full lg:w-1/2">
           <label for="email" class="block text-gray-700 text-sm">Your email</label>
-          <input type="email" formControlName="email" placeholder="ex:john@gmail.com" name="email" class="shadow border rounded w-full p-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+          <input type="email" formControlName="email" placeholder="ex:john@gmail.com" name="email" class="rounded w-full p-2 text-gray-700 leading-tight focus:outline-none">
           <div *ngIf="messageForm.get('email')?.hasError('required') && (messageForm.get('email')?.touched || submitted)" class="text-red-500 text-xs">Email is required</div>
           <div *ngIf="messageForm.get('email')?.hasError('email') && (messageForm.get('email')?.touched || submitted)" class="text-red-500 text-xs">Please enter a valid email address.</div>
         </div>

@@ -9,6 +9,7 @@ export interface CreateUserDto {
     role:string;
     gender:string;
     password:string; 
+    userProfile:[]
 }
 
 export interface UserLogin {
@@ -18,10 +19,11 @@ export interface UserLogin {
 
 export interface UpdateProfileDto {
     level: string;
-    subject: string[];
-    imageUrl: string;
-    otherInterest: string;
+    domain: string[];
+    imageUrl: string[];
     description: string;
+    otherInterest: string;
+    
 }
 
 export interface CreateMessageDto{
