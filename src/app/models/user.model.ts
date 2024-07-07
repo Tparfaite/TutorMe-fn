@@ -9,7 +9,15 @@ export interface CreateUserDto {
     role:string;
     gender:string;
     password:string; 
-    userProfile:[]
+    userProfile:[
+        {
+            level:string;
+            imageUrl:string;
+            domain:string;
+            description:string;
+            otherInterest:string
+        }
+    ]
 }
 
 export interface UserLogin {

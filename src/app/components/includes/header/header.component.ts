@@ -29,15 +29,25 @@ isLoggedIn():boolean{
   return this.authService.isLoggedIn()
 }
 
+
 logout(){
-  
   this.spinner.show()
-  setTimeout(()=>{
-    this.spinner.hide()
-    this.authService.logout()
-    this.toastr.success('You logged out')
-  },1000)
-  this.router.navigate(['/login'])
+  this.authService.logout().subscribe({
+    next:()=>{
+      setTimeout(()=>{
+        this.spinner.hide()
+        this.toastr.success("You logged out")
+        this.router.navigate(['/login'])
+
+      },1000)
+    }, error:(error=>{
+      setTimeout(()=>{
+        this.spinner.hide()
+        this.toastr.error("Logout failed")
+      },1000)
+
+    })
+  })
 }
 
 }
