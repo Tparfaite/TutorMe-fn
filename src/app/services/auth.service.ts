@@ -105,20 +105,15 @@ export class AuthService {
     return !!this.getToken();
   }
 
-  logout(): void {
-    
-      this.http.get(`${this.appUrl}/users/logout`, { withCredentials: true }).subscribe({
-        next: () => {
-          this.cookieService.delete('accessToken');
-         
-        },
-        error: (err) => {
-          console.error('Logout failed', err);
-        }
-      });
-    
-   
-  }
+  
+ logout(): Observable<void> {
+  return this.http.get<void>(`${this.appUrl}/users/logout`, { withCredentials: true }).pipe(
+    tap(() => {
+      this.cookieService.delete('accessToken');
+    })
+  );
+ }
+
 
   
 

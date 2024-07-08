@@ -2,9 +2,10 @@
 <div class="pt-5 bg-blue-100 pb-8">
     <div class="mb-4 input-container flex justify-center">
         <div class="relative w-1/2">
-            <mat-icon class=" icon">search</mat-icon>
-            <input type="text" formControlName="search" placeholder="Search tutors by their location, domain, or name" name="search"
-                class="rounded-lg w-full py-3 px-3 pl-10 text-gray-700 leading-tight focus:outline-none">
+            <form [formGroup]="searchForm">
+                <mat-icon class=" icon">search</mat-icon>
+                <input type="text" formControlName="search" placeholder="Search tutors by their location, domain, or name" name="search" class="rounded-lg w-full py-3 px-3 pl-10 text-gray-700 leading-tight focus:outline-none">
+            </form>
         </div>
     </div>
     <h1 class="flex justify-center text-3xl">Available Tutors </h1>
@@ -13,29 +14,30 @@
     
 
     <div class="mt-16 gap-4 gap-x-4  w-2/3 mx-auto " >
-        <div *ngFor="let tutor of tutorProfile" class="bg-gray-100 p-4 flex m-auto rounded-2xl mb-5 min-h-96 "  >
-            <div class="w-1/4">
-                <img class="rounded-lg h-48 w-48" src="{{userProfileDto.imageUrl}}" alt="Tutor Image">
+        <div *ngFor="let tutor of profileData" class="bg-gray-100 p-4 flex m-auto rounded-2xl mb-5 min-h-96 "  >
+            <div class="w-2/7">
+                <img class="rounded-lg h-48 w-48" src="{{tutor.userProfile.imageUrl}}" alt="Tutor Image">
                 <p class="font-normal pt-3">Names: <span class="font-light"> {{tutor.firstName}} {{tutor.lastName}}</span></p>
-                <p class="font-normal">Domain: <span class="font-light"> {{userProfileDto.domain}}</span></p>
-                <p class="font-normal">Level: <span class="font-light"> {{userProfileDto.level}}</span></p>
+                <p class="font-normal">Domain: <span class="font-light"> {{tutor.userProfile.domain}}</span></p>
+                <p class="font-normal">Level: <span class="font-light"> {{tutor.userProfile.level}}</span></p>
                 <p class="font-normal">Location: <span class="font-light">{{tutor.province}}, {{tutor.district}}, {{tutor.sector}} </span></p>
                 
             </div>
-            <div class=" xs:-pl-3 w-px bg-gray-200 mb-7 mt-4"></div>
+            <div class=" xs:-pl-3 w-px bg-gray-300 mb-7 mt-4"></div>
             <div class="ml-8 w-2/3">
                 
                 <h1 class="underline text-xl font-bold" >About Me</h1>
-                <p class=" pt-2 w-full">  {{userProfileDto.description}} </p>
-                <div *ngIf="userProfileDto.otherInterest" >
+                <p class=" pt-2 w-full">  {{tutor.userProfile.description}} </p>
+                <div *ngIf="tutor.userProfile.otherInterest" >
                     <h1 class="underline text-md mt-5 font-bold">Other interest</h1>
-                    <p  class=" pt-2 w-full">  {{userProfileDto.otherInterest}} </p>
+                    <p  class=" pt-2 w-full">  {{tutor.userProfile.otherInterest}} </p>
                 </div>
-               
 
-                <button type="button" class=" hover:cursor-pointer bg-blue-100 font-bold py-2 px-4 rounded-lg shadow focus:outline-none focus:ring-green-500 mb-5">Read more...</button>
-              
             </div>
+            <div class="mt-auto"> 
+                <button type="button" (click)="getSingleUser(tutor.id,tutor)"  class=" hover:cursor-pointer bg-green-500 font-bold py-2 px-4 rounded-lg shadow focus:outline-none mb-5 mt-5">Connect</button>
+            </div>
+            
         </div>
      
     </div>
