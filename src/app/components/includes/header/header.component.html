@@ -1,3 +1,12 @@
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="default"
+  color="#fff"
+  type="ball-spin-clockwise"
+>
+  <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>
+
 <div class="text-white text-sm  bg-gray-900 h-16 flex items-center justify-between sticky top-0 w-full">
     <div class="pl-20">
         <a class="cursor-pointer" routerLink="/">
@@ -8,19 +17,19 @@
     
     <div class="flex items-center mr-16 justify-between gap-20">
         
-            <div> <a class="cursor-pointer focus:active focus:text-green-700" routerLink="/" routerLinkActive="active-link">Home</a> </div>
+            <div> <a class="cursor-pointer focus:active focus:text-green-400" routerLink="/" routerLinkActive="active-link">Home</a> </div>
         
-            <div> <a class="cursor-pointer focus:active focus:text-green-700 " routerLink="/contact" routerLinkActive="active-link" >Contact</a> </div>
+            <!-- <div> <a class="cursor-pointer focus:active focus:text-green-700 " routerLink="/contact" routerLinkActive="active-link" >Contact</a> </div> -->
         
-            <div> <a class="cursor-pointer focus:active focus:text-green-700" routerLink="/tutors" routerLinkActive="active-link" >Tutors</a> </div>
+            <div> <a class="cursor-pointer focus:active focus:text-green-400" routerLink="/tutors" routerLinkActive="active-link" >Tutors</a> </div>
         
             <ng-container *ngIf="!isLoggedIn()">
-                <div><a class="cursor-pointer focus:active focus:text-green-700" routerLink="/login" routerLinkActive="active-link">Login</a></div>
-                <div><a class="cursor-pointer focus:active focus:text-green-700" routerLink="/signup" routerLinkActive="active-link">Signup</a></div>
+                <div><a class="cursor-pointer focus:active focus:text-green-400" routerLink="/login" routerLinkActive="active-link">Login</a></div>
+                <div><a class="cursor-pointer focus:active focus:text-green-400" routerLink="/signup" routerLinkActive="active-link">Signup</a></div>
             </ng-container>
 
             <ng-container *ngIf="isLoggedIn()">
-                <div> <button class="cursor-pointer focus:active focus:text-green-700" (click)="logout()" >Logout</button> </div>
+                <div> <button class="cursor-pointer focus:active focus:text-green-400" (click)="logout()" >Logout</button> </div>
             </ng-container>
            
 

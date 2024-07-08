@@ -56,13 +56,23 @@ export class AdminDashboardComponent implements OnInit{
   }
 
   logout(){
-    this.authService.logout()
     this.spinner.show()
-    setTimeout(()=>{
-      this.spinner.hide()
-      this.toastr.success('You logged out')
-    },1000)
-    this.router.navigate(['/login'])
+    this.authService.logout().subscribe({
+      next:()=>{
+        setTimeout(()=>{
+          this.spinner.hide()
+          this.toastr.success("You logged out")
+          this.router.navigate(['/login'])
+  
+        },1000)
+      }, error:(error=>{
+        setTimeout(()=>{
+          this.spinner.hide()
+          this.toastr.error(error.message)
+        },1000)
+  
+      })
+    })
   }
 
 }

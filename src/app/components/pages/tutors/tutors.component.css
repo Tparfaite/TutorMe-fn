@@ -9,6 +9,10 @@
     transform: translateY(-50%); /* Adjust for icon height if needed */
   }
 
+  .tutorHeight{
+    height: 68vh;
+  }
+
  
 
   

@@ -1,7 +1,10 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { CreateUserDto, UpdateProfileDto } from 'src/app/models/user.model';
-import { Observable } from 'rxjs';
+import { debounceTime } from 'rxjs';
+import { TutorSearchService } from 'src/app/services/tutor-search.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 
 
@@ -13,41 +16,52 @@ import { Observable } from 'rxjs';
 })
 export class TutorsComponent implements OnInit {
   
-  userProfileDto:UpdateProfileDto
-
+ 
+  userId:number;
   tutorProfile:CreateUserDto[]=[];
   
-
+  searchForm: FormGroup;
+  profileData:any
+  filteredTutors: any[] = [];
 
 
   @Output() getClickedTutor = new EventEmitter<CreateUserDto>();
   
   viewingMoreAbout:boolean=false;
   
-  constructor(private authService:AuthService){}
+  constructor(
+    private authService:AuthService,
+    private searchTutorService: TutorSearchService,
+    private fb:FormBuilder,
+    private toastr:ToastrService
+    ){
+      this.searchForm = this.fb.group({
+        search:['']
+      })
+    }
 
  ngOnInit(): void {
   this.getUpdatedTutors()
+  this.listenToSearchInput()
  }
+
+ 
 getUpdatedTutors(){
   this.authService.getUsers().subscribe({
+   
     next:(tutors=>{
-      const tutorsList=tutors.filter((tutor:any)=>tutor.role === 'tutor')
-      this.tutorProfile=tutorsList.filter((tutor:any)=>tutor.userProfile !== null)
-      const profileData = this.tutorProfile.map((tutor: any) => 
-      this.userProfileDto= tutor.userProfile,
       
-      
+      const tutorsList=tutors.filter((tutor:any)=>tutor.role === 'tutor');
+      const listOfTutors=tutorsList.filter((tutor:any)=>tutor.userProfile !== null)
+
+      this.profileData = listOfTutors.map((tutor: any) => 
+      this.tutorProfile=tutor,
       );
       
+      return this.profileData
       
-      console.log("User profiles with images:", this.tutorProfile);
-      console.log("User profiles with images userProfileDto:", this.userProfileDto);
-      
-      
-      console.log("user profileeeeee",profileData)
-      return profileData
-      
+    }),error:(error=>{
+      console.log("error occured while fetching tutors",error)
     })
   })
 }
@@ -59,8 +73,56 @@ getUpdatedTutors(){
  console.log("Tutor to view", tutorId,tutor)
  }
 
- searchTutors(){}
+ 
 
+ searchTutors(query: string): void {
+  console.log('query', query);
+  this.searchTutorService.searchTutors(query).subscribe({
+    next: (tutors) => {
+      const tutorsList=tutors.filter((tutor:any)=>tutor.role === 'tutor');
+      const listOfTutors=tutorsList.filter((tutor:any)=>tutor.userProfile !== null)
+      this.filteredTutors = listOfTutors;
+      this.profileData = this.filteredTutors; 
+    },
+    error: (error) => {
+      console.log('Error fetching searched tutors', error);
+    },
+  });
+}
+
+
+listenToSearchInput() {
+  this.searchForm.get('search')?.valueChanges.pipe(debounceTime(300)).subscribe(query => {
+    if (query) {
+      this.searchTutors(query);
+    } else {
+      this.getUpdatedTutors() 
+    }
+  });
+}
+
+
+
+favoriteClicked(userId:number,tutorId:number){
+  userId = this.authService.decodedUser().id;
+ if(userId){
+ this.authService.addTutorLike(userId,tutorId).subscribe({
+  next:(result=>{
+    console.log("result sub",result);
+    this.getUpdatedTutors();
+  }),
+  error:(error=>{
+    console.log("error for like",error.message)
+  })
+ })
+ }else{
+  this.toastr.error(Error.name)
+  console.log("jjjjjjjjjjjj")
+ }
+ console.log("hello logged",userId)
+}
+
+getSingleUser(tutorId:number, tutor:any){}
 
 
 

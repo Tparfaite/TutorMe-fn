@@ -23,6 +23,7 @@ import { AllUsersComponent } from './all-users/all-users.component';
 import { MessagesComponent } from './messages/messages.component';
 import { OverviewComponent } from './overview/overview.component';
 import { ExamsComponent } from './exams/exams.component';
+import { ChatComponent } from './chat/chat.component';
 
 
 
@@ -43,7 +44,8 @@ import { ExamsComponent } from './exams/exams.component';
     AllUsersComponent,
     MessagesComponent,
     OverviewComponent,
-    ExamsComponent
+    ExamsComponent,
+    ChatComponent
   
     
   ],
@@ -76,7 +78,9 @@ import { ExamsComponent } from './exams/exams.component';
     ExamPageComponent,
     UpdateProfileComponent,
     AdminDashboardComponent,
-    TutorDashboardComponent
+    TutorDashboardComponent,
+    ChatComponent,
+    AllUsersComponent
     
     
   ]

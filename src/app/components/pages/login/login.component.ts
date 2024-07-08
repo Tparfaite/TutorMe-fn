@@ -60,10 +60,8 @@ export class LoginComponent implements OnInit {
 
       this.authService.login(loggedUser).subscribe({
         next: (loggedUser) => {
-          console.log("loged user shoulddd",loggedUser.accessToken)
           const tokenFromCookie=this.cookieService.get('accessToken');
           const decodedToken: any = jwtDecode(tokenFromCookie);
-          console.log("decoded token",decodedToken)
 
           
           setTimeout(() => {
@@ -83,15 +81,15 @@ export class LoginComponent implements OnInit {
             this.spinner.hide();
             this.loginForm.reset();
             console.log("logged user role is",decodedToken.role)
-          }, 1000); 
+          }, 800); 
         },
         error: (error) => {
           setTimeout(()=>{
-            this.toastr.error('Invalid credentials');
+            this.toastr.error(error);
             console.log('Login failed', error);
             this.isLoading = false;
             this.spinner.hide();
-          },1000)
+          },800)
           
         },
       });

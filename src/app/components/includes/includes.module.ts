@@ -5,6 +5,7 @@ import { HeaderComponent } from './header/header.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { AppRoutingModule } from 'src/app/app-routing.module';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 
 
@@ -17,7 +18,8 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
     CommonModule,
     MatIconModule,
     MatDividerModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgxSpinnerModule
     
   ],
   exports: [

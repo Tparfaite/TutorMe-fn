@@ -1,8 +1,8 @@
 import { jwtDecode } from 'jwt-decode';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CreateMessageDto, CreateUserDto, UpdateProfileDto, UserLogin } from '../models/user.model';
-import { Observable, tap } from 'rxjs';
+import { Observable, catchError, tap, throwError } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
 
 
@@ -12,6 +12,12 @@ import { CookieService } from 'ngx-cookie-service';
 export class AuthService {
 
   constructor(private http:HttpClient,  private cookieService: CookieService) { }
+
+  private getHeaders(){
+    const token = this.cookieService.get('accessToken');
+   
+    return new HttpHeaders().set('Authorization',`Bearer ${token}`)
+  }
 
   header = new HttpHeaders({
     "Content-Type": "application/json",
@@ -25,7 +31,7 @@ export class AuthService {
   }
   
   decodedUser(){
-    const payloadDecoded:{email:string,id:number}= jwtDecode(this.getToken());
+    const payloadDecoded:{email:string,id:number, role:string}= jwtDecode(this.getToken());
     console.log('decoded in authservice',payloadDecoded)
     return payloadDecoded
     
@@ -45,11 +51,27 @@ export class AuthService {
 
   login(user:UserLogin):Observable<any>{
     return this.http.post<UserLogin>(`${this.appUrl}/users/login`, user, {headers:this.header,withCredentials: true}).pipe(
-      tap(loggedUser=>{
-        console.log('the logged user is',loggedUser)
-      })
+      catchError(this.handleError)
     )
   }
+
+  private handleError(error: HttpErrorResponse): Observable<never> {
+    let errorMessage = 'An unknown error occurred!';
+    if (error.error instanceof ErrorEvent) {
+      errorMessage = `Error: ${error.error.message}`;
+    } else {
+      
+      if (error.status === 404) {
+        errorMessage = 'User with this email not found';
+      } else if (error.status === 400) {
+        errorMessage = 'Invalid credentials';
+      } else {
+        errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+      }
+    }
+    return throwError(errorMessage);
+  }
+
 
   getUsers():Observable<any>{
     const token=this.getToken();
@@ -92,6 +114,14 @@ export class AuthService {
    )
   }
 
+  updateUser(id:number,updateUser:CreateUserDto):Observable<any>{
+    return this.http.patch(`${this.appUrl}/users/update/${id}`, updateUser, {headers:this.header}).pipe(
+      tap(result=>{
+        console.log("updated user",result)
+      })
+    )
+  }
+
 
   getMessages():Observable<any>{
     return this.http.get(`${this.appUrl}/message/getAll`, {headers:this.header}).pipe(
@@ -101,24 +131,52 @@ export class AuthService {
     )
   }
 
+  deleteMessage(id:number):Observable<any>{
+    return this.http.delete(`${this.appUrl}/message/delete/${id}`, {headers:this.header}).pipe(
+      tap(result=>{
+
+      })
+    )
+  }
+
+  deleteUser(id:number):Observable<any>{
+    return this.http.delete(`${this.appUrl}/users/delete/${id}`, {headers:this.header}).pipe(
+      tap(result=>{
+
+      })
+    )
+  }
+
   isLoggedIn(): boolean {
     return !!this.getToken();
   }
 
-  logout(): void {
-    
-      this.http.get(`${this.appUrl}/users/logout`, { withCredentials: true }).subscribe({
-        next: () => {
-          this.cookieService.delete('accessToken');
-         
-        },
-        error: (err) => {
-          console.error('Logout failed', err);
-        }
-      });
-    
-   
-  }
+  
+ logout(): Observable<void> {
+  return this.http.get<void>(`${this.appUrl}/users/logout`, { withCredentials: true }).pipe(
+    tap(() => {
+      this.cookieService.delete('accessToken');
+    })
+  );
+ }
+
+ addTutorLike(userId:number,tutorId:number):Observable<any>{
+  console.log("sent headers",this.getHeaders())
+  return this.http.post(`${this.appUrl}/likes/${userId}/${tutorId}`,{},{headers:this.getHeaders()}).pipe(
+    tap(result=>{
+      console.log("like added",result)
+    })
+  )
+ }
+
+ getReceivedLikes(tutorId:number):Observable<any>{
+  return this.http.post(`${this.appUrl}/${tutorId}`,{ headers:this.header}).pipe(
+    tap(result=>{
+      console.log("received likes",result)
+    })
+  )
+ }
+
 
   
 

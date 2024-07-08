@@ -94,7 +94,6 @@ updateUserProfile(id:number){
       setTimeout(()=>{
        this.spinner.hide();
        this.toastr.error("Profile update failed");
-       this.updateProfileForm.reset()
 
       },1000)
       console.log("error occured while creating user Profile",error)

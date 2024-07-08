@@ -16,6 +16,7 @@ import { ForbiddenComponent } from './components/pages/forbidden/forbidden.compo
 import { AllUsersComponent } from './components/pages/all-users/all-users.component';
 import { MessagesComponent } from './components/pages/messages/messages.component';
 import { OverviewComponent } from './components/pages/overview/overview.component';
+import { ChatComponent } from './components/pages/chat/chat.component';
 
 
 const routes: Routes = [
@@ -31,15 +32,16 @@ const routes: Routes = [
   data: { role: 'tutor' },},
   {path:'adminDashboard', component: AdminDashboardComponent,canActivate: [AuthGuard],
   data: { role: 'admin' },
-  children: [
-    {path:'', component: OverviewComponent},
-    {path:'allUsers',component:AllUsersComponent},
-    {path:'messages',component:MessagesComponent}
-  ]
-},
+    children: [
+      {path:'', component: OverviewComponent},
+      {path:'allUsers',component:AllUsersComponent},
+      {path:'messages',component:MessagesComponent}
+    ]
+  },
   {path:'tutorDashboard', component: TutorDashboardComponent,canActivate: [AuthGuard],
   data: { role: 'tutor' },},
-  {path: 'forbidden', component:ForbiddenComponent}
+  {path: 'forbidden', component:ForbiddenComponent},
+  {path:'chat',component:ChatComponent}
  
 ];
 

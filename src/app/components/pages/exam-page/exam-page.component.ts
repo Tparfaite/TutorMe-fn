@@ -26,6 +26,7 @@ interface Exam {
 export class ExamPageComponent implements OnInit {
   exam: Exam;
   userAnswers: string[] = [];
+  correctAnswers: string[] = [];
   loggedUserEmail: string = '';
   examForm: FormGroup;
   examSubmitted:boolean=false;
@@ -56,7 +57,14 @@ export class ExamPageComponent implements OnInit {
     console.log("domain and level selected", domain);
     this.examService.generateExam(domain, level).subscribe((data) => {
       console.log("data question", data);
-      this.exam = data;
+      this.correctAnswers=data.correctAnswers
+      console.log("correct answer",this.correctAnswers)
+      this.exam = {
+        id: data.exam.id,
+        domain: data.exam.domain,
+        level: data.exam.level,
+        questions: data.selectedQuestions,
+      };
       this.userAnswers = new Array(this.exam.questions.length).fill('');
 
       
@@ -75,6 +83,7 @@ export class ExamPageComponent implements OnInit {
 
 
   onSubmitExam() {
+
     if(this.examForm.valid){
       this.spinner.show()
       const questionsArray = this.examForm.get('questions') as FormArray;
@@ -85,7 +94,7 @@ export class ExamPageComponent implements OnInit {
 
 
       const userId = this.getLoggedUserEmail().id;
-      this.examService.submitExam(userId, this.exam.id, this.userAnswers).subscribe({
+      this.examService.submitExam(userId, this.exam.id, this.userAnswers,this.correctAnswers).subscribe({
         next:(result) => {
           this.result=result;
           const questionArrayLength= this.exam.questions.length;
@@ -99,7 +108,10 @@ export class ExamPageComponent implements OnInit {
               this.examSubmitted=true 
               this.examForm.reset()
               this.spinner.hide()
-              this.router.navigate(['/tutor/updateProfile'])
+              setTimeout(()=>{
+                this.router.navigate(['/tutor/updateProfile'])
+              },4000)
+              
 
             },1000)
           }else{
@@ -107,10 +119,6 @@ export class ExamPageComponent implements OnInit {
               this.examSubmitted=true
               this.examForm.reset();
               this.spinner.hide();
-              
-              setTimeout(()=>{
-                this.router.navigate(['/'])
-              },5000)
 
             },1000)
           }
