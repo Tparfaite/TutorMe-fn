@@ -1,15 +1,17 @@
 <div class="flex justify-center  items-center bg-blue-100">
     <div class="bg-gray-100 shadow rounded-lg p-8 w-1/4 mx-5">
-      <h1 class="text-red-500 text-4xl font-bold">21</h1>
+      <h1 class="text-red-500 text-4xl font-bold">{{messages.length}}</h1>
       <p class="text-gray-700 text-lg mt-4">Messages available</p>
     </div>
-    <div class="bg-gray-100 shadow rounded-lg mx-5 p-8 w-1/4 ">
-        <h1 class="text-red-500 text-4xl font-bold">12</h1>
-        <p class="text-gray-700 text-lg mt-4">Parents</p>
-    </div>
+    <!-- <div class="bg-gray-100 shadow rounded-lg mx-5 p-8 w-1/4 ">
+        <h1 class="text-red-500 text-4xl font-bold">{{parentList.length}}</h1>
+        <p *ngIf="parentList.length > 1" class="text-gray-700 text-lg mt-4">Parents</p>
+        <p *ngIf="parentList.length <= 1" class="text-gray-700 text-lg mt-4">Parent</p>
+    </div> -->
     <div class="bg-gray-100 shadow rounded-lg p-8 w-1/4 mx-5">
-        <h1 class="text-red-500 text-4xl font-bold">30</h1>
-        <p class="text-gray-700 text-lg mt-4">Tutors</p>
+        <h1 class="text-red-500 text-4xl font-bold">{{users.length}}</h1>
+        <p *ngIf="users.length > 1" class="text-gray-700 text-lg mt-4">Users</p>
+        <p *ngIf="users.length <= 1" class="text-gray-700 text-lg mt-4">User</p>
     </div>
 
   </div>

@@ -1,0 +1,30 @@
+<div class="chat bg-blue-500 flex items-center justify-center p-4 min-h-px">
+    <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-md ">
+        <div *ngIf="typingDisplay" class="text-sm text-gray-600 mb-4">{{ typingDisplay }}</div>
+      <div *ngIf="!joined">
+        <form [formGroup]="joinForm" class="flex flex-col space-y-4">
+          <label class="text-lg font-medium">What's your name?</label>
+          <input formControlName="name" class="border rounded-lg p-2 outline-none">
+          <button type="submit" (click)="join()" class="bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">Join</button>
+        </form>
+      </div>
+      <div *ngIf="joined">
+        <div class="messages-container h-64 overflow-y-scroll p-4 bg-gray-100 rounded-lg mb-4">
+            <div *ngFor="let message of messages" [ngClass]="{'bg-blue-200 text-left': message.name === username, 'bg-green-200 text-right': message.name !== username}" class="mb-2 p-2 rounded-lg">
+              <span class="font-semibold">{{ message.name }}:</span> {{ message.text }}
+            </div>
+        </div>
+  
+       
+        <hr class="my-4">
+  
+        <div class="message-input ">
+          <form [formGroup]="messageForm" class="flex items-center space-x-4 ">
+            <input formControlName="messageText" (input)="emitTyping()" class="border rounded-lg p-2 flex-grow " placeholder="Type your message...">
+            <button type="submit" (click)="sendMessage()" class="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700">Send</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  

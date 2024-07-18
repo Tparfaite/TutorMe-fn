@@ -17,19 +17,19 @@
     
     <div class="flex items-center mr-16 justify-between gap-20">
         
-            <div> <a class="cursor-pointer focus:active focus:text-green-700" routerLink="/" routerLinkActive="active-link">Home</a> </div>
+            <div> <a class="cursor-pointer focus:active focus:text-green-400" routerLink="/" routerLinkActive="active-link">Home</a> </div>
         
-            <div> <a class="cursor-pointer focus:active focus:text-green-700 " routerLink="/contact" routerLinkActive="active-link" >Contact</a> </div>
+            <!-- <div> <a class="cursor-pointer focus:active focus:text-green-700 " routerLink="/contact" routerLinkActive="active-link" >Contact</a> </div> -->
         
-            <div> <a class="cursor-pointer focus:active focus:text-green-700" routerLink="/tutors" routerLinkActive="active-link" >Tutors</a> </div>
+            <div> <a class="cursor-pointer focus:active focus:text-green-400" routerLink="/tutors" routerLinkActive="active-link" >Tutors</a> </div>
         
             <ng-container *ngIf="!isLoggedIn()">
-                <div><a class="cursor-pointer focus:active focus:text-green-700" routerLink="/login" routerLinkActive="active-link">Login</a></div>
-                <div><a class="cursor-pointer focus:active focus:text-green-700" routerLink="/signup" routerLinkActive="active-link">Signup</a></div>
+                <div><a class="cursor-pointer focus:active focus:text-green-400" routerLink="/login" routerLinkActive="active-link">Login</a></div>
+                <div><a class="cursor-pointer focus:active focus:text-green-400" routerLink="/signup" routerLinkActive="active-link">Signup</a></div>
             </ng-container>
 
             <ng-container *ngIf="isLoggedIn()">
-                <div> <button class="cursor-pointer focus:active focus:text-green-700" (click)="logout()" >Logout</button> </div>
+                <div> <button class="cursor-pointer focus:active focus:text-green-400" (click)="logout()" >Logout</button> </div>
             </ng-container>
            
 

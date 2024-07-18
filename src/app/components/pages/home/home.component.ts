@@ -52,7 +52,7 @@ export class HomeComponent implements OnInit {
             this.spinner.hide();
             this.messageForm.reset();
             this.submitted=false
-          },2000)
+          },600)
           console.log("this is response meaasge from client",response)
         }), error:(error=>{
           setTimeout(()=>{
@@ -61,7 +61,7 @@ export class HomeComponent implements OnInit {
             this.submitted=false
             this.spinner.hide()
             throw error.message
-          },2000)
+          },600)
            
         })
       })

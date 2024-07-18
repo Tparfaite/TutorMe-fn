@@ -31,8 +31,8 @@ export class ExamService {
     return this.http.get(`${this.appUrl}/exams/${domain}/${level}`);
   }
 
-  submitExam(userId: number, examId: number, userAnswers: string[]): Observable<any> {
-    return this.http.post(`${this.appUrl}/exams/${userId}/${examId}`, { userAnswers });
+  submitExam(userId: number, examId: number, userAnswers: string[],correctAnswers: string[]): Observable<any> {
+    return this.http.post(`${this.appUrl}/exams/${userId}/${examId}`, { userAnswers,correctAnswers });
   }
 
 }

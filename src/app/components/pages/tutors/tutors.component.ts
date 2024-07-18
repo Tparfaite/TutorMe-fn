@@ -4,6 +4,7 @@ import { CreateUserDto, UpdateProfileDto } from 'src/app/models/user.model';
 import { debounceTime } from 'rxjs';
 import { TutorSearchService } from 'src/app/services/tutor-search.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 
 
@@ -16,7 +17,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class TutorsComponent implements OnInit {
   
  
-
+  userId:number;
   tutorProfile:CreateUserDto[]=[];
   
   searchForm: FormGroup;
@@ -31,7 +32,8 @@ export class TutorsComponent implements OnInit {
   constructor(
     private authService:AuthService,
     private searchTutorService: TutorSearchService,
-    private fb:FormBuilder
+    private fb:FormBuilder,
+    private toastr:ToastrService
     ){
       this.searchForm = this.fb.group({
         search:['']
@@ -49,7 +51,7 @@ getUpdatedTutors(){
    
     next:(tutors=>{
       
-      const tutorsList=tutors.filter((tutor:any)=>tutor.role === 'tutor')
+      const tutorsList=tutors.filter((tutor:any)=>tutor.role === 'tutor');
       const listOfTutors=tutorsList.filter((tutor:any)=>tutor.userProfile !== null)
 
       this.profileData = listOfTutors.map((tutor: any) => 
@@ -77,8 +79,9 @@ getUpdatedTutors(){
   console.log('query', query);
   this.searchTutorService.searchTutors(query).subscribe({
     next: (tutors) => {
-      this.filteredTutors = tutors;
-      console.log('Filtered tutors:', this.filteredTutors);
+      const tutorsList=tutors.filter((tutor:any)=>tutor.role === 'tutor');
+      const listOfTutors=tutorsList.filter((tutor:any)=>tutor.userProfile !== null)
+      this.filteredTutors = listOfTutors;
       this.profileData = this.filteredTutors; 
     },
     error: (error) => {
@@ -96,6 +99,27 @@ listenToSearchInput() {
       this.getUpdatedTutors() 
     }
   });
+}
+
+
+
+favoriteClicked(userId:number,tutorId:number){
+  userId = this.authService.decodedUser().id;
+ if(userId){
+ this.authService.addTutorLike(userId,tutorId).subscribe({
+  next:(result=>{
+    console.log("result sub",result);
+    this.getUpdatedTutors();
+  }),
+  error:(error=>{
+    console.log("error for like",error.message)
+  })
+ })
+ }else{
+  this.toastr.error(Error.name)
+  console.log("jjjjjjjjjjjj")
+ }
+ console.log("hello logged",userId)
 }
 
 getSingleUser(tutorId:number, tutor:any){}
