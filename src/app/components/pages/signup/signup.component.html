@@ -26,7 +26,7 @@
                 <div class="flex mb-2 justify-between gap-2">
                     <div class="">
                         <label for="phoneNumber" class="block text-gray-700 text-md">Phone Number</label>
-                        <input type="number" formControlName="phoneNumber" placeholder="ex:078888888" name="phoneNumber" class="rounded w-full p-2 text-gray-700 leading-tight focus:outline-none">
+                        <input type="text" formControlName="phoneNumber" placeholder="ex:078888888" name="phoneNumber" class="rounded w-full p-2 text-gray-700 leading-tight focus:outline-none">
                         <div *ngIf="signupForm.get('phoneNumber')?.hasError('required') && (signupForm.get('phoneNumber')?.touched || submitted)"  class="text-red-500 text-xs">Phone number is required</div>
                     </div>
                     <div class="">

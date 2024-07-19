@@ -1,5 +1,5 @@
-<div class="chat bg-blue-500 flex items-center justify-center p-4 min-h-px">
-    <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-md ">
+<div class="chat bg-blue-500 flex items-center justify-center p-4 min-h-96">
+    <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-md mt-10">
         <div *ngIf="typingDisplay" class="text-sm text-gray-600 mb-4">{{ typingDisplay }}</div>
       <div *ngIf="!joined">
         <form [formGroup]="joinForm" class="flex flex-col space-y-4">

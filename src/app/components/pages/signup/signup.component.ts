@@ -51,7 +51,7 @@ export class SignupComponent implements OnInit {
         this.isLoading=false;
         this.toastr.success('Account registered successful')
         this.router.navigate(['/login'])
-        },2000)
+        },800)
         console.log("this is response",response)
       }), error:(error=>{
         setTimeout(()=>{
@@ -59,7 +59,7 @@ export class SignupComponent implements OnInit {
             console.log('Login failed', error);
             this.isLoading = false;
             this.spinner.hide();
-        })
+        },700)
         throw error.message
       })
     })
