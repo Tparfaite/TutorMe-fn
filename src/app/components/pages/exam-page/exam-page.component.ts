@@ -65,6 +65,7 @@ export class ExamPageComponent implements OnInit {
         level: data.exam.level,
         questions: data.selectedQuestions,
       };
+      
       this.userAnswers = new Array(this.exam.questions.length).fill('');
 
       

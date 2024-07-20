@@ -24,7 +24,6 @@ import { MessagesComponent } from './messages/messages.component';
 import { OverviewComponent } from './overview/overview.component';
 import { ExamsComponent } from './exams/exams.component';
 import { ChatComponent } from './chat/chat.component';
-import { CommunicationComponent } from './communication/communication.component';
 
 
 
@@ -46,8 +45,7 @@ import { CommunicationComponent } from './communication/communication.component'
     MessagesComponent,
     OverviewComponent,
     ExamsComponent,
-    ChatComponent,
-    CommunicationComponent
+    ChatComponent
   
     
   ],
