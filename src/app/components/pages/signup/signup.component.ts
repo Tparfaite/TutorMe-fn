@@ -46,25 +46,33 @@ export class SignupComponent implements OnInit {
     console.log("this is formdata",formdata)
     this.authService.createUser(formdata).subscribe({
       next:(response=>{
+        // if(response){
+        //   this.spinner.hide();
+        //   this.isLoading=false;
+        //   this.signupForm.reset();
+        //   this.toastr.success('Account registered successful')
+        //   this.router.navigate(['/login'])
+        // }
         setTimeout(()=>{
         this.spinner.hide();
         this.isLoading=false;
+        this.signupForm.reset();
         this.toastr.success('Account registered successful')
         this.router.navigate(['/login'])
-        },2000)
+        },500)
         console.log("this is response",response)
       }), error:(error=>{
         setTimeout(()=>{
-          this.toastr.error('Invalid credentials');
-            console.log('Login failed', error);
+          this.toastr.error(error.message)
+            console.log('Signup failed', error.message);
             this.isLoading = false;
             this.spinner.hide();
-        })
+        },700)
         throw error.message
       })
     })
     
-    this.signupForm.reset()
+    
     this.submitted=false
    
   }

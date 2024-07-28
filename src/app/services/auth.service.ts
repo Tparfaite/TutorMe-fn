@@ -31,7 +31,9 @@ export class AuthService {
   }
   
   decodedUser(){
-    const payloadDecoded:{email:string,id:number, role:string}= jwtDecode(this.getToken());
+    const token = this.getToken()
+   
+    const payloadDecoded:{email:string,id:number, role:string}= jwtDecode(token);
     console.log('decoded in authservice',payloadDecoded)
     return payloadDecoded
     

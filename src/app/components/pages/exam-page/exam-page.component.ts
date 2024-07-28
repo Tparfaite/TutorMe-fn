@@ -65,6 +65,7 @@ export class ExamPageComponent implements OnInit {
         level: data.exam.level,
         questions: data.selectedQuestions,
       };
+      
       this.userAnswers = new Array(this.exam.questions.length).fill('');
 
       
@@ -104,6 +105,7 @@ export class ExamPageComponent implements OnInit {
           
 
           if(this.result.passed===true){
+            console.log("yhis.result.passed",this.result.passed)
             setTimeout(()=>{
               this.examSubmitted=true 
               this.examForm.reset()
@@ -113,14 +115,14 @@ export class ExamPageComponent implements OnInit {
               },4000)
               
 
-            },1000)
+            },800)
           }else{
             setTimeout(()=>{
               this.examSubmitted=true
               this.examForm.reset();
               this.spinner.hide();
 
-            },1000)
+            },800)
           }
 
         }, error: (error)=>{

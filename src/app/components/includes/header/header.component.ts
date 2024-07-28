@@ -39,12 +39,12 @@ logout(){
         this.toastr.success("You logged out")
         this.router.navigate(['/login'])
 
-      },1000)
+      },500)
     }, error:(error=>{
       setTimeout(()=>{
         this.spinner.hide()
         this.toastr.error("Logout failed")
-      },1000)
+      },500)
 
     })
   })

@@ -9,8 +9,8 @@
 
 
 <div class="bg-blue-100 min-h-96 pt-10">
-    <div *ngIf="!exam" class="pt-5 w-2/3 mx-auto bg-green-200 p-4 rounded-lg shadow-md" >
-        <p class="text-center text-lg text-green-700">Sorry! You didn't choose the exam or the exam you choose is not available right now.</p>
+    <div *ngIf="!exam" class="pt-5 mt-24 w-2/3 mx-auto bg-red-400 p-4 rounded-lg shadow-md" >
+        <p class="text-center text-lg">Sorry! You didn't choose the exam or the exam you choose is not available right now.</p>
     </div>
     <div *ngIf="examSubmitted" class="mt-5 w-2/3 mx-auto bg-green-200 p-4 rounded-lg shadow-md">
       <p *ngIf="result.passed" class="text-center text-lg text-green-700">Congratulations for your success! You passed with {{percentage}}% ! Now you are able to update your profile </p>

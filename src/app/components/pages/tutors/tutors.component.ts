@@ -27,7 +27,7 @@ export class TutorsComponent implements OnInit {
 
   @Output() getClickedTutor = new EventEmitter<CreateUserDto>();
   
-  viewingMoreAbout:boolean=false;
+ 
   
   constructor(
     private authService:AuthService,
@@ -42,6 +42,7 @@ export class TutorsComponent implements OnInit {
 
  ngOnInit(): void {
   this.getUpdatedTutors()
+  
   this.listenToSearchInput()
  }
 
@@ -57,7 +58,6 @@ getUpdatedTutors(){
       this.profileData = listOfTutors.map((tutor: any) => 
       this.tutorProfile=tutor,
       );
-      
       return this.profileData
       
     }),error:(error=>{
@@ -66,12 +66,7 @@ getUpdatedTutors(){
   })
 }
  
- viewingMore(tutorId:number,tutor:any){
-  this.viewingMoreAbout=true;
-  const tutorrToView=tutor
-  this.getClickedTutor=tutorrToView
- console.log("Tutor to view", tutorId,tutor)
- }
+ 
 
  
 
@@ -103,26 +98,37 @@ listenToSearchInput() {
 
 
 
-favoriteClicked(userId:number,tutorId:number){
-  userId = this.authService.decodedUser().id;
- if(userId){
- this.authService.addTutorLike(userId,tutorId).subscribe({
-  next:(result=>{
-    console.log("result sub",result);
-    this.getUpdatedTutors();
-  }),
-  error:(error=>{
-    console.log("error for like",error.message)
-  })
- })
- }else{
-  this.toastr.error(Error.name)
-  console.log("jjjjjjjjjjjj")
- }
- console.log("hello logged",userId)
+favoriteClicked(tutorId:number){
+  const token = this.authService.getToken();
+  if(token){
+    const userId = this.authService.decodedUser().id;
+    this.authService.addTutorLike(userId,tutorId).subscribe({
+      next:(result=>{
+        console.log("result sub",result);
+        this.getUpdatedTutors();
+      }),
+      error:(error=>{
+        console.log("error for like",error.message)
+      })
+    });
+    console.log("hello logged",userId)
+  }else{
+   this.toastr.error("Login first")
+  }
+
+ 
 }
 
-getSingleUser(tutorId:number, tutor:any){}
+getSingleUser(phoneNumber: string): void {
+  const token = this.authService.getToken();
+  if(token){
+    const whatsappUrl = `https://wa.me/${phoneNumber}`;
+    window.open(whatsappUrl, '_blank');
+  }else{
+    this.toastr.error("Login first")
+  }
+  
+}
 
 
 
