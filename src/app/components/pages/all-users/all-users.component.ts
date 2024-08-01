@@ -103,7 +103,7 @@ export class AllUsersComponent implements OnInit{
         next:(updated=>{
           const index = this.users.findIndex(user => user.id === this.userId);
           if (index !== -1) {
-            this.users[index] = updated; // Assuming updatedUser has the new data
+            this.users[index] = updated; 
           }
         }),
         error:(error=>{
