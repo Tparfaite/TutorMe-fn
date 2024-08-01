@@ -70,7 +70,6 @@
                         <option value="" disabled selected>Please Select </option>
                         <option value="parent">Parent/student</option>
                         <option value="tutor">Tutor</option>
-                        <option value="admin">Admin</option>
                     </select>
                     <div *ngIf="signupForm.get('role')?.hasError('required') && (signupForm.get('role')?.touched || submitted)"  class="text-red-500 text-xs">User role is required, please select</div>
                 </div>

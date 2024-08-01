@@ -17,7 +17,6 @@ export class TutorSearchService {
   }
 
   private handleError(error: HttpErrorResponse): Observable<never> {
-    // Customize error handling here if needed
     console.error('An error occurred:', error);
     return throwError('Something went wrong; please try again later.');
   }

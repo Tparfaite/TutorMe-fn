@@ -37,48 +37,39 @@ export class SignupComponent implements OnInit {
  ngOnInit(): void {
    
  }
- onSignup(){
-  this.submitted=true;
-  if(this.signupForm.valid){
-    this.isLoading=true;
-    this.spinner.show()
-    const formdata=this.signupForm.value
-    console.log("this is formdata",formdata)
+ onSignup() {
+  this.submitted = true;
+  if (this.signupForm.valid) {
+    this.isLoading = true;
+    this.spinner.show();
+    const formdata = this.signupForm.value;
+
     this.authService.createUser(formdata).subscribe({
-      next:(response=>{
-        // if(response){
-        //   this.spinner.hide();
-        //   this.isLoading=false;
-        //   this.signupForm.reset();
-        //   this.toastr.success('Account registered successful')
-        //   this.router.navigate(['/login'])
-        // }
-        setTimeout(()=>{
-        this.spinner.hide();
-        this.isLoading=false;
-        this.signupForm.reset();
-        this.toastr.success('Account registered successful')
-        this.router.navigate(['/login'])
-        },500)
-        console.log("this is response",response)
-      }), error:(error=>{
-        setTimeout(()=>{
-          this.toastr.error(error.message)
-            console.log('Signup failed', error.message);
-            this.isLoading = false;
-            this.spinner.hide();
-        },700)
-        throw error.message
-      })
-    })
-    
-    
-    this.submitted=false
-   
+      next: (response) => {
+        setTimeout(() => {
+          this.spinner.hide();
+          this.isLoading = false;
+          this.signupForm.reset();
+          this.toastr.success('Account registered successfully');
+          this.router.navigate(['/login']);
+        }, 500);
+        console.log("Response:", response);
+      },
+      error: (error) => {
+        setTimeout(() => {
+          this.isLoading = false;
+          this.spinner.hide();
+          this.toastr.error('Signup failed: ' + (error.error?.message || 'An unexpected error occurred'));
+          console.log('Signup failed', error.message);
+        }, 100);
+      }
+    });
+
+    this.submitted = false;
   }
-  return 
+}
+
  
- }
  goToLoginPage(){
   this.router.navigate(['/login'])
  }

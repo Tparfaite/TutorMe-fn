@@ -16,9 +16,9 @@ import { ExamService } from 'src/app/services/exam.service';
 })
 export class UpdateProfileComponent implements OnInit {
   updateProfileForm: FormGroup
-imageUrl:any;
-userId:number;
-subjectFormData:any;
+  imageUrl:any;
+  userId:number;
+  subjectFormData:any;
 
 
 constructor(
@@ -69,6 +69,7 @@ updateUserProfile(id:number){
   if(this.updateProfileForm && this.imageUrl){
     this.spinner.show();
     const {level, domain}=this.examService.getFormData()
+   
    const userProfile=this.updateProfileForm.value;
    userProfile.imageUrl= this.imageUrl;
    userProfile.level=level;
@@ -101,6 +102,8 @@ updateUserProfile(id:number){
    })
 
   }
+  
+
   
   
   

@@ -40,14 +40,14 @@
             (change)="onFileSelected($event)"
             accept="image/*"
           />
+          <div *ngIf="updateProfileForm.get('imageUrl')?.hasError('required') && updateProfileForm.get('imageUrl')?.touched"
+          class="text-red-500 text-xs mt-1"
+        >
+          Your image is required
+        </div>
           <div *ngIf="imageUrl" class="mt-2">
             <img src="{{imageUrl}}" alt="Profile Image" class="h-10 rounded" />
-            <div
-            *ngIf="updateProfileForm.get('imageUrl')?.hasError('required') && updateProfileForm.get('imageUrl')?.touched"
-            class="text-red-500 text-xs mt-1"
-          >
-            Your image is required
-          </div>
+            
           </div>
         </div>
         <div class="mb-4">
